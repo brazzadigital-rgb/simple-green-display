@@ -1,0 +1,450 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes shine-sweep {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    /* ─── Primary: Laranja Esportivo ─── */
+    --primary: 17 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-dark: 17 100% 40%;
+    --primary-light: 17 90% 60%;
+
+    /* ─── Secondary: Preto Profundo ─── */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --secondary-light: 0 0% 94%;
+    --secondary-soft: 0 0% 98%;
+
+    /* ─── Background & Surfaces (LIGHT) ─── */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
+
+    --card: 0 0% 99%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* ─── Accent (= Primary for brand) ─── */
+    --accent: 17 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    /* ─── Muted ─── */
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+
+    /* ─── Destructive / Success / Warning ─── */
+    --destructive: 0 65% 48%;
+    --destructive-foreground: 0 0% 98%;
+
+    --success: 152 55% 38%;
+    --success-foreground: 0 0% 98%;
+
+    --warning: 38 85% 50%;
+    --warning-foreground: 0 0% 10%;
+
+    /* ─── Border / Input / Ring ─── */
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 17 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* ─── Buttons (independent) ─── */
+    --buttons: 17 100% 50%;
+    --buttons-foreground: 0 0% 100%;
+
+    /* ─── Links ─── */
+    --link: 17 100% 45%;
+
+    /* ─── Header ─── */
+    --header-bg: 0 0% 100%;
+    --header-text: 0 0% 10%;
+    --header-bg-hover: 0 0% 96%;
+
+    /* ─── Glow effects ─── */
+    --glow-primary: 0 0 20px hsla(17, 100%, 50%, 0.15);
+    --glow-primary-lg: 0 0 40px hsla(17, 100%, 50%, 0.1), 0 0 80px hsla(17, 100%, 50%, 0.05);
+
+    /* ─── Sidebar ─── */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 17 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 17 100% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 97%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 97%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 60%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --header-bg: 0 0% 3%;
+    --header-text: 0 0% 95%;
+    --header-bg-hover: 0 0% 8%;
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 92%;
+    --sidebar-border: 0 0% 16%;
+  }
+}
+
+@layer base {
+  :root {
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  * {
+    @apply border-border;
+    transition: background-color 300ms ease, border-color 300ms ease, color 200ms ease, box-shadow 300ms ease;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Exo 2', 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', 'Exo 2', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); line-height: 1.2; }
+  h2 { font-size: clamp(1.25rem, 3.5vw, 2rem); line-height: 1.25; }
+  h3 { font-size: clamp(1.1rem, 3vw, 1.5rem); line-height: 1.3; }
+  h4 { font-size: 1.125rem; }
+
+  p, span, li {
+    letter-spacing: 0.01em;
+  }
+
+  button, a, [role="button"], input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .min-h-auto, span > a, p > a, td button, th button,
+  [data-radix-collection-item], [role="option"],
+  [role="menuitem"], [role="tab"] {
+    min-height: unset;
+    min-width: unset;
+  }
+
+  input, select, textarea {
+    min-width: unset;
+    width: 100%;
+  }
+}
+
+@layer components {
+  .admin-card {
+    @apply bg-white rounded-2xl border border-border shadow-sm transition-all duration-200;
+  }
+  .admin-card:hover {
+    @apply shadow-md;
+  }
+  
+  .admin-input {
+    @apply h-10 rounded-xl border-0 bg-muted text-sm focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all text-foreground placeholder:text-muted-foreground;
+  }
+
+  .admin-btn-primary {
+    @apply bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm hover:shadow-md transition-all rounded-xl text-sm font-medium px-4 py-2.5 flex items-center gap-2;
+  }
+
+  .admin-table-th {
+    @apply px-4 py-3 text-[11px] uppercase tracking-wider font-bold text-muted-foreground border-b border-border bg-white sticky top-0 z-10;
+  }
+
+  .admin-table-td {
+    @apply px-4 py-3 text-sm text-foreground/70 border-b border-border/50 transition-colors;
+  }
+
+  .admin-status-pill {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide border;
+  }
+  
+  .admin-status-success { @apply bg-emerald-50 text-emerald-700 border-emerald-100; }
+  .admin-status-warning { @apply bg-amber-50 text-amber-700 border-amber-100; }
+  .admin-status-danger { @apply bg-red-50 text-red-700 border-red-100; }
+  .admin-status-info { @apply bg-blue-50 text-blue-700 border-blue-100; }
+  .admin-status-muted { @apply bg-muted text-muted-foreground border-border; }
+
+  /* Sport neon button */
+  .btn-neon {
+    @apply relative overflow-hidden uppercase tracking-[0.15em] font-bold text-sm;
+    background: linear-gradient(135deg, hsl(17 100% 50%), hsl(0 100% 50%));
+    box-shadow: 0 0 20px hsla(17, 100%, 50%, 0.3), 0 0 40px hsla(17, 100%, 50%, 0.1);
+    transition: all 0.3s ease;
+  }
+  .btn-neon:hover {
+    box-shadow: 0 0 30px hsla(17, 100%, 50%, 0.5), 0 0 60px hsla(17, 100%, 50%, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .btn-neon-outline {
+    @apply relative overflow-hidden uppercase tracking-[0.15em] font-bold text-sm border-2;
+    border-color: hsl(17 100% 50%);
+    color: hsl(17 100% 50%);
+    transition: all 0.3s ease;
+  }
+  .btn-neon-outline:hover {
+    background: hsl(17 100% 50% / 0.1);
+    box-shadow: 0 0 20px hsla(17, 100%, 50%, 0.2);
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-black/5 backdrop-blur-2xl border border-black/10;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-2xl border border-black/10;
+    background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl border border-black/5;
+    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(245,245,245,0.9));
+  }
+
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(0 100% 50%));
+  }
+
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  .glow-primary-lg {
+    box-shadow: var(--glow-primary-lg);
+  }
+
+  .shadow-premium {
+    box-shadow: 0 2px 16px -4px rgba(255,73,0,0.1), 0 1px 3px -1px rgba(0,0,0,0.3);
+  }
+
+  .shadow-premium-lg {
+    box-shadow: 0 8px 32px -8px rgba(255,73,0,0.15), 0 2px 8px -2px rgba(0,0,0,0.4);
+  }
+
+  .shadow-float {
+    box-shadow: 0 16px 48px -12px hsl(var(--primary) / 0.15), 0 8px 24px -8px rgba(0,0,0,0.3);
+  }
+
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.1) 45%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 55%, transparent 60%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .shine:hover::after {
+    transform: translateX(100%);
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .hover-energy {
+    @apply transition-all duration-300;
+  }
+
+  .hover-energy:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 8px 28px -8px hsl(var(--primary) / 0.2);
+  }
+
+  .premium-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary-dark)) 0%, hsl(var(--primary)) 50%, hsl(0 100% 50%) 100%);
+  }
+
+  .premium-gradient-radial {
+    background: radial-gradient(ellipse at 30% 50%, hsl(var(--primary) / 0.15) 0%, transparent 60%),
+                linear-gradient(135deg, hsl(var(--secondary-soft)) 0%, hsl(var(--background)) 100%);
+  }
+
+  .border-glow {
+    border: 1px solid hsl(var(--primary) / 0.3);
+  }
+
+  .bg-mesh {
+    background-image:
+      radial-gradient(at 40% 20%, hsl(var(--primary) / 0.08) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsl(17 100% 50% / 0.06) 0px, transparent 50%),
+      radial-gradient(at 0% 80%, hsl(var(--primary) / 0.04) 0px, transparent 50%);
+  }
+
+  .text-gradient-orange { @apply text-gradient-primary; }
+  .glow-orange { @apply glow-primary; }
+  .glow-orange-lg { @apply glow-primary-lg; }
+  .sport-gradient { @apply premium-gradient; }
+  .sport-gradient-radial { @apply premium-gradient-radial; }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ─── Sport glow card effect ─── */
+@keyframes neon-border-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.sport-card-glow {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid hsl(17 100% 50% / 0.1);
+  transition: all 0.3s ease;
+}
+.sport-card-glow:hover {
+  border-color: hsl(17 100% 50% / 0.3);
+  box-shadow: 0 0 20px hsla(17, 100%, 50%, 0.08), 0 8px 32px rgba(0,0,0,0.06);
+}
+
+/* ─── Luminous line animation ─── */
+@keyframes luminous-line {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.luminous-line {
+  position: relative;
+  overflow: hidden;
+}
+.luminous-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(17 100% 50%), transparent);
+  animation: luminous-line 3s ease-in-out infinite;
+}
+
+/* ─── Scroll reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-border {
+  to { --border-angle: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0ms !important;
+  }
+}
+
+/* ─── Product Thumbnail System (square 1:1) ─── */
+.product-thumb {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background: hsl(0 0% 96%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.35s ease;
+}
+.product-thumb:hover img {
+  transform: scale(1.06);
+}
+.product-thumb-mini {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 10px;
+  background: hsl(0 0% 96%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-thumb-mini img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Particles effect */
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  50% { transform: translateY(-40px) translateX(20px); }
+}
