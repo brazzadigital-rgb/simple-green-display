@@ -1,1 +1,0 @@
-ALTER TABLE public.product_variants ADD COLUMN attribute_group TEXT DEFAULT NULL;

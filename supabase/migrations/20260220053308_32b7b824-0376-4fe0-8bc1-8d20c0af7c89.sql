@@ -1,1 +1,0 @@
-ALTER TABLE public.owner_invoices ADD COLUMN IF NOT EXISTS meta_json jsonb DEFAULT '{}'::jsonb;
